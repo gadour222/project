@@ -1,0 +1,44 @@
+
+
+
+
+{% block body %}
+
+    <div class="bg-light rounded h-100 p-4">
+       
+        {{ form_start(form) }}
+        <div class="mb-3">
+            {{ form_label(form.code) }}
+            {{ form_widget(form.code, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.name_en) }}
+            {{ form_widget(form.name_en, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.type_code) }}
+            {{ form_widget(form.type_code, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.region_id) }}
+            {{ form_widget(form.region_id, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.country_id) }}
+            {{ form_widget(form.country_id, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        
+        <!-- Ajoutez d'autres champs de formulaire au besoin -->
+        <div class="bg-light text-center rounded p-4">
+        <button type="submit" class="btn btn-primary">submit</button>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+
+
+{% endblock %}

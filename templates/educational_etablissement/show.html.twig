@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EducationalEtablissement{% endblock %}
+
+{% block body %}
+<div class="bg-light rounded h-100 p-4">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ educational_etablissement.id }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ educational_etablissement.code }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ educational_etablissement.name }}</td>
+            </tr>
+            <tr>
+                <th>Name en</th>
+                <td>{{ educational_etablissement.nameEn }}</td>
+            </tr>
+            <tr>
+                <th>Type code</th>
+                <td>{{ educational_etablissement.typeCode }}</td>
+            </tr>
+            <tr>
+                <th>Id Region</th>
+                <td>{{ educational_etablissement.regionId }}</td>
+            </tr>
+            <tr>
+                <th>Id Country</th>
+                <td>{{ educational_etablissement.countryId }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="bg-light rounded h-100 p-4">
+    <a class="btn btn-sm btn-primary" href="{{ path('app_educational_etablissement_index') }}">back to list</a>
+ <br> <br>
+
+  
+  
+    <a class="btn btn-sm btn-warning" href="{{ path('app_educational_etablissement_edit', {'id': educational_etablissement.id}) }}">edit</a>
+    
+    
+    {{ include('educational_etablissement/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}
