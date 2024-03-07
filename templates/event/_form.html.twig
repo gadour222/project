@@ -1,0 +1,32 @@
+{% block body%}
+<div class="bg-light rounded h-100 p-4">
+{{ form_start(form) }}
+            <div class="mb-3">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.name_en) }}
+                {{ form_widget(form.name_en, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.user_id) }}
+                {{ form_widget(form.user_id, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.type_code) }}
+                {{ form_widget(form.type_code, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.from_date) }}
+                {{ form_widget(form.from_date, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.to_date) }}
+                {{ form_widget(form.to_date, {'attr': {'class': 'form-control'}}) }}
+            </div>
+  
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+        </div>
+{% endblock%}
