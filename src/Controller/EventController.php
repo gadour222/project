@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\Subject;
 use App\Form\EventType;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,24 +24,40 @@ class EventController extends AbstractController
     }
 
     #[Route('/new', name: 'app_event_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $event = new Event();
-        $form = $this->createForm(EventType::class, $event);
-        $form->handleRequest($request);
+public function new(Request $request, EntityManagerInterface $entityManager): Response
+{
+    $event = new Event();
+    $form = $this->createForm(EventType::class, $event);
+    $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($event);
-            $entityManager->flush();
+    if ($form->isSubmitted() && $form->isValid()) {
+        /** @var UploadedFile $imageFile */
+        $imageFile = $form->get('imageFileName')->getData();
 
-            return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
-        }
+        // Generate a unique name for the file
+        $newFilename = uniqid().'.'.$imageFile->guessExtension();
 
-        return $this->render('event/new.html.twig', [
-            'event' => $event,
-            'form' => $form,
-        ]);
+        // Move the file to the directory where images are stored
+        $imageFile->move(
+            $this->getParameter('kernel.project_dir') . '/public/uploads/images',
+            $newFilename
+        );
+
+        // Set the image file name to the entity
+        $event->setImageFileName($newFilename);
+
+        // Persist the entity with the image filename
+        $entityManager->persist($event);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    return $this->render('event/new.html.twig', [
+        'event' => $event,
+        'form' => $form->createView(),
+    ]);
+}
 
     #[Route('/{id}', name: 'app_event_show', methods: ['GET'])]
     public function show(Event $event): Response

@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Entity\Event;
+use App\Entity\Activty;
+
 use App\Form\ContactFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface; // Importez cette classe
+use Doctrine\ORM\EntityManagerInterface;
 
 class SuiteWebController extends AbstractController
 {
@@ -17,6 +20,8 @@ class SuiteWebController extends AbstractController
     {
         $form = $this->createForm(ContactFormType::class);
         $form->handleRequest($request);
+
+        $events = []; // Initialisez la variable $events
 
         if ($form->isSubmitted() && $form->isValid()) {
             $formData = $form->getData();
@@ -32,8 +37,16 @@ class SuiteWebController extends AbstractController
             $this->addFlash('success', 'Your message has been sent and saved to the database. Thank you!');
         }
 
+        // Récupérer les événements de la base de données
+        $events = $entityManager->getRepository(Event::class)->findAll();
+        $activties = $entityManager->getRepository(Activty::class)->findAll();
+
         return $this->render('suite_web/index.html.twig', [
             'form' => $form->createView(),
+            'events' => $events,
+            'activties' => $activties,
+            
+             
         ]);
     }
 }

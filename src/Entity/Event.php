@@ -19,13 +19,17 @@ class Event
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name_en = null;
+    private ?string $subject = null;
 
     #[ORM\Column]
     private ?int $user_id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $type_code = null;
+    private ?string $prix = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageFileName = null;
+
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $from_date = null;
@@ -53,14 +57,14 @@ class Event
         return $this;
     }
 
-    public function getNameEn(): ?string
+    public function getSubject(): ?string
     {
-        return $this->name_en;
+        return $this->subject;
     }
 
-    public function setNameEn(string $name_en): static
+    public function setSubject(string $subject): static
     {
-        $this->name_en = $name_en;
+        $this->subject = $subject;
 
         return $this;
     }
@@ -77,14 +81,14 @@ class Event
         return $this;
     }
 
-    public function getTypeCode(): ?string
+    public function getPrix(): ?string
     {
-        return $this->type_code;
+        return $this->prix;
     }
 
-    public function setTypeCode(string $type_code): static
+    public function setPrix(string $prix): static
     {
-        $this->type_code = $type_code;
+        $this->prix = $prix;
 
         return $this;
     }
@@ -123,4 +127,16 @@ class Event
 
         return $this;
     }
+    
+  public function getImageFileName(): ?string
+{
+    return $this->imageFileName;
+}
+
+public function setImageFileName(?string $imageFileName): static
+{
+    $this->imageFileName = $imageFileName;
+
+    return $this;
+}
 }

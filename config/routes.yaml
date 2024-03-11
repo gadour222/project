@@ -9,3 +9,11 @@ app_suite_web:
 manager:
     path: /manager
     controller: App\Controller\ManagerController::index
+
+activty:
+    path: /activty
+    controller: App\Controller\ActivtyController::index
+
+
+
+

@@ -13,16 +13,16 @@
             {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="mb-3">
-            {{ form_label(form.name_en) }}
-            {{ form_widget(form.name_en, {'attr': {'class': 'form-control'}}) }}
+            {{ form_label(form.subject) }}
+            {{ form_widget(form.subject, {'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="mb-3">
             {{ form_label(form.user_id) }}
             {{ form_widget(form.user_id, {'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="mb-3">
-            {{ form_label(form.type_code) }}
-            {{ form_widget(form.type_code, {'attr': {'class': 'form-control'}}) }}
+            {{ form_label(form.prix) }}
+            {{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="mb-3">
             {{ form_label(form.from_date) }}
@@ -35,6 +35,10 @@
         <div class="mb-3">
             {{ form_label(form.color) }}
             {{ form_widget(form.color, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.imageFileName) }}
+            {{ form_widget(form.imageFileName, {'attr': {'class': 'form-control'}}) }}
         </div>
         <!-- Ajoutez d'autres champs de formulaire au besoin -->
         <button type="submit" class="btn btn-primary">Soumettre</button>

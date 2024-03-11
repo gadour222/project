@@ -27,8 +27,8 @@ class ManagerController extends AbstractController
             $eventColor[] = $Eventss->getColor();
         
             // Vérifier si getNameEn est un tableau avant d'utiliser count
-            $nameEn = $Eventss->getNameEn();
-            $eventCount[] = is_array($nameEn) ? count($nameEn) : 0;
+            $subject = $Eventss->getSubject();
+            $eventCount[] = is_array($subject) ? count($subject) : 0;
         }
         
 
