@@ -1,0 +1,24 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+app_suite_web:
+    path: /
+    controller: App\Controller\SuiteWebController::index
+manager:
+    path: /manager
+    controller: App\Controller\ManagerController::index
+
+activty:
+    path: /activty
+    controller: App\Controller\ActivtyController::index
+
+
+
+
+admin_contact_messages:
+    path: /admin/contact-messages
+    controller: App\Controller\AdminController::contactMessages
+
+

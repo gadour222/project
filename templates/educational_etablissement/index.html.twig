@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EducationalEtablissement {% endblock %}
+
+{% block body %}
+
+<div class="bg-light text-center rounded p-4">
+   
+
+    <table class="table table-striped">
+       <table class="table text-start align-middle table-bordered table-hover mb-0">
+        <thead class="thead-dark">
+                    <tr class="text-dark">
+                        <th scope="col">Id</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">name</th>
+                        <th scope="col">Name en</th>
+                        <th scope="col">Type code</th>
+                        <th scope="col">Id Region</th>
+                        <th scope="col">Id Country</th>
+                        <th scope="col"></th>
+                   
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for educational_etablissement in educational_etablissements %}
+                    <tr>
+                        <td>{{ educational_etablissement.id }}</td>
+                        <td>{{ educational_etablissement.code }}</td>
+                        <td>{{ educational_etablissement.name }}</td>
+                        <td>{{ educational_etablissement.nameEn }}</td>
+                        <td>{{ educational_etablissement.typeCode }}</td>
+                        <td>{{ educational_etablissement.regionId }}</td>
+                        <td>{{ educational_etablissement.countryId }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-primary" href="{{ path('app_educational_etablissement_show', {'id': educational_etablissement.id}) }}">show</a>
+                            <a class="btn btn-sm btn-warning" href="{{ path('app_educational_etablissement_edit', {'id': educational_etablissement.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8">no records found</td>
+                    </tr>
+                {% endfor %}
+                   
+                </tbody>
+            </table>
+                <a class="btn btn-sm btn-primary" href="{{ path('app_educational_etablissement_new') }}">Create new</a>
+          
+        </div>
+
+
+{% endblock %}
+    

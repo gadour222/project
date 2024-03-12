@@ -1,0 +1,408 @@
+{% extends 'base2.html.twig' %}
+{% block body %}
+
+
+
+<!-- ======= Header ======= --><header id="header" class="fixed-top d-flex align-items-center header-transparent">
+  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+    <div class="logo me-auto">
+      <h1><a href="index.html">GuideUp</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+    </div>
+
+    <nav id="navbar" class="navbar order-last order-lg-0">
+      <ul>
+        <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+        <li><a class="nav-link scrollto" href="#about">About</a></li>
+
+        <li><a class="nav-link scrollto" href="#menu">Offres</a></li>
+        <li><a class="nav-link scrollto" href="#events">Events</a></li>
+        <li><a class="nav-link scrollto" href="#chefs">Mentors</a></li>
+
+        {% if app.user %}
+      <i class="bi bi-list mobile-nav-toggle"></i>
+      <li class="dropdown"><a href="#"><span>{{ app.user.firstName }} {{ app.user.lastName }}</span> <i class="bi bi-chevron-down"></i></a>
+        
+        <ul>
+          <li><a href="#">My profile</a></li>
+          <li><a href="{{ path('app_logout') }}">Log out</a></li>
+        </ul>
+      </li>
+      {% endif %}
+    </nav><!-- .navbar -->
+
+    
+
+  </div>
+</header><!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+  <div class="hero-container">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+      <div class="carousel-inner" role="listbox">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg);">
+          <div class="carousel-container">
+            <div class="carousel-content">
+              <h2 class="animate__animated animate__fadeInDown"><span>Guide</span> Up</h2>
+              <p class="animate__animated animate__fadeInUp">Your gateway to personalized mentorship. Connect with experienced mentors and unlock your full potential today.</p>
+              <div>
+                <a href="{{ path('app_login') }}" class="btn-menu animate__animated animate__fadeInUp scrollto">Sign  in</a>
+                <a href="{{ path('app_register') }}" class="btn-book animate__animated animate__fadeInUp scrollto">Sign Up</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+
+    </div>
+  </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("assets/img/about.jpg");'>
+          <img src="assetsClient/img/mentoring.jpg" alt="Mentoring Platform" class="img-fluid">
+        </div>
+        <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
+          <div class="content">
+            <h3>Welcome to Guide up</h3>
+            <p>
+              Our mentoring platform is designed to connect mentors with mentees in order to facilitate growth, learning, and development. Whether you're seeking guidance in your career, looking to enhance your skills, or simply in need of advice, our platform provides the resources and support you need to succeed.
+            </p>
+            <p class="fst-italic">
+              Our dedicated team is committed to providing a supportive environment where both mentors and mentees can thrive.
+            </p>
+            <ul>
+              <li><i class="bx bx-check-double"></i> Connect with experienced mentors who can offer valuable insights and guidance.</li>
+              <li><i class="bx bx-check-double"></i> Access a wide range of resources and tools to support your personal and professional development.</li>
+              <li><i class="bx bx-check-double"></i> Join a community of like-minded individuals who are passionate about learning and growth.</li>
+            </ul>
+            <p>
+              We believe that everyone has the potential to achieve their goals, and our platform is here to help you unlock that potential. Join us today and take the first step towards a brighter future.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End About Section -->
+  
+
+  <!-- ======= Why Us Section ======= -->
+<section id="why-us" class="why-us">
+  <div class="container">
+    <div class="section-title">
+      <h2>Why Choose <span>Our Platform</span></h2>
+      <p>Discover the benefits of joining our mentoring platform and why it's the right choice for your growth and development.</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="box">
+          <span>01</span>
+          <h4>Experienced Mentors</h4>
+          <p>Connect with experienced mentors who have a wealth of knowledge and insights to share, helping you navigate your personal and professional challenges.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 mt-4 mt-lg-0">
+        <div class="box">
+          <span>02</span>
+          <h4>Personalized Guidance</h4>
+          <p>Receive personalized guidance tailored to your specific needs and goals, ensuring that you get the support and direction necessary for your success.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 mt-4 mt-lg-0">
+        <div class="box">
+          <span>03</span>
+          <h4>Community Support</h4>
+          <p>Join a vibrant community of like-minded individuals who are passionate about learning and growth, fostering connections and collaborations that enrich your journey.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- End Why Us Section -->
+
+
+<!-- ======= Offers Section ======= -->
+<section id="menu" class="menu">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Discover our <span>Offers</span></h2>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 d-flex justify-content-center">
+        <ul id="menu-flters">
+          <li data-filter="*" class="filter-active">Show All</li>
+          <li data-filter=".filter-discounts">Discounts</li>
+          <li data-filter=".filter-bundles">Bundles</li>
+          <li data-filter=".filter-promotions">Promotions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row menu-container">
+
+      <div class="col-lg-6 menu-item filter-discounts">
+        <div class="menu-content">
+          <a href="#">50% Off Membership</a><span>$29.99/mo</span>
+        </div>
+        <div class="menu-ingredients">
+          Get 50% off on your first month's membership fee. Limited time offer. Sign up now!
+        </div>
+      </div>
+
+      <div class="col-lg-6 menu-item filter-bundles">
+        <div class="menu-content">
+          <a href="#">Starter Pack</a><span>$49.99</span>
+        </div>
+        <div class="menu-ingredients">
+          Get our exclusive Starter Pack including access to 3 mentoring sessions and a personalized development plan.
+        </div>
+      </div>
+
+      <div class="col-lg-6 menu-item filter-promotions">
+        <div class="menu-content">
+          <a href="#">Refer a Friend</a><span>Earn $10 Credit</span>
+        </div>
+        <div class="menu-ingredients">
+          Refer a friend to our platform and earn a $10 credit towards your next mentoring session.
+        </div>
+      </div>
+
+      <!-- Additional offers can be added here -->
+
+    </div>
+
+  </div>
+</section><!-- End Offers Section -->
+
+  <!-- ======= Specials Section ======= -->
+  <section id="specials" class="specials">
+      <div class="container">
+    
+          <div class="section-title">
+              <h2>Check our <span>Activity</span></h2>
+              <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+          </div>
+    
+          <div class="row">
+              <div class="col-lg-3">
+                  <ul class="nav nav-tabs flex-column">
+                      {% for activity in activties %}
+                          <li class="nav-item">
+                              <a class="nav-link {% if loop.first %}active show{% endif %}" data-bs-toggle="tab" href="#tab-{{ loop.index }}">{{ activity.name }}</a>
+                          </li>
+                      {% endfor %}
+                  </ul>
+              </div>
+    
+              <div class="col-lg-9 mt-4 mt-lg-0">
+                  <div class="tab-content">
+                      {% for activity in activties %}
+                          <div class="tab-pane {% if loop.first %}active show{% endif %}" id="tab-{{ loop.index }}">
+                              <div class="row">
+                                  <div class="col-lg-8 details order-2 order-lg-1">
+                                      <h3>{{ activity.subject }}</h3>
+                                      <p>{{ activity.text }}</p>
+                                  </div>
+                                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                                      <img src="{{ asset('uploads/images/' ~ activity.imageFileName) }}" class="img-fluid" alt="{{ activity.name }}">
+                                  </div>
+                              </div>
+                          </div>
+                      {% endfor %}
+                  </div>
+              </div>
+          </div>
+    
+      </div>
+  </section><!-- End Specials Section -->
+  
+  
+
+
+  <!-- ======= Events Section ======= -->
+<section id="events" class="events">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Our <span>Events</span></h2>
+    </div>
+
+    <div class="events-slider swiper">
+      <div class="swiper-wrapper">
+
+        <!-- Loop through events and create slides -->
+        {% for event in events %}
+        <div class="swiper-slide">
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="{{ asset('uploads/images/' ~ event.imageFileName) }}" class="img-fluid" alt="{{ event.name }}">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>{{ event.name }}</h3>
+              <div class="price">
+                <p><span>{{ event.prix }}</span></p>
+              </div>
+              <p class="fst-italic">{{ event.subject }}</p>
+              <div class="section-title">
+                <h2>From <span>{{ event.fromDate|date('Y-m-d H:i:s') }}</span> to <span>{{ event.toDate|date('Y-m-d H:i:s') }}</span></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+      <!-- Add pagination -->
+      <div class="swiper-pagination"></div>
+
+    
+    </div>
+
+  </div>
+</section>
+<!-- End Events Section -->
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper('.events-slider', {
+    slidesPerView: 'auto',
+    spaceBetween: 30,
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
+
+
+ 
+ 
+<!-- ======= Mentors Section ======= -->
+<section id="mentors" class="mentors">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Our Professional <span>Mentors</span></h2>
+      <p>Meet the experienced mentors ready to guide you on your journey to success.</p>
+    </div>
+
+    <div class="row">
+
+      <!-- Mentor 1 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="member">
+        {% for user in users %}
+        {% for role in user.roles %}
+        {% if role in ['MENTOR'] %}
+        <div class="pic"><img src="assets/img/mentors/mentor-1.jpg" class="img-fluid" alt=""></div>
+         <div class="member-info">
+           <h4>{{ user.firstName }} {{ user.lastName }}</h4>
+           
+            <span> Mentor</span>
+            
+            <div class="social">
+              <a href=""><i class="bi bi-twitter"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+             
+            </div>
+           
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+    
+    </div>
+   
+  </div>
+ 
+</section><!-- End Mentors Section -->
+
+
+ 
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    
+
+      {{ form_start(form, {'attr': {'class': 'php-email-form'}}) }}
+
+      <div class="row">
+          <div class="col-md-6 form-group">
+              {{ form_row(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Your Name'}}) }}
+          </div>
+          <div class="col-md-6 form-group mt-3 mt-md-0">
+              {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Your Email'}}) }}
+          </div>
+      </div>
+      
+      <div class="form-group mt-3">
+          {{ form_row(form.subject, {'attr': {'class': 'form-control', 'placeholder': 'Subject'}}) }}
+      </div>
+      
+      <div class="form-group mt-3">
+          {{ form_row(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Message'}}) }}
+      </div>
+      
+      <div class="my-3">
+          <div class="loading">Loading</div>
+          <div class="error-message"></div>
+          <div class="sent-message">{{ 'Your message has been sent. Thank you!' | trans }}</div>
+      </div>
+      
+      <div class="text-center">
+          <button type="submit">{{ 'Send Message' | trans }}</button>
+      </div>
+      
+      {{ form_end(form) }}
+      
+      
+
+    </div>
+  </section><!-- End Contact Section -->
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="container">
+    <h3>GuideUp</h3>
+    
+      <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+      <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+      <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+      <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+      <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+    </div>
+    <div class="copyright">
+      &copy; Copyright <strong><span>GuideUp</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+   
+    </div>
+  </div>
+</footer><!-- End Footer -->
+{% endblock %}

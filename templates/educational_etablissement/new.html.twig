@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EducationalEtablissement{% endblock %}
+
+{% block body %}
+   
+
+    {{ include('educational_etablissement/_form.html.twig') }}
+    <div class="bg-light text-center rounded p-4">
+    <a class="btn btn-sm btn-return" href="{{ path('app_educational_etablissement_index') }}">back to list</a>
+    </div>
+{% endblock %}
