@@ -4,7 +4,7 @@ controllers:
         namespace: App\Controller
     type: attribute
 app_suite_web:
-    path: /suiteWeb
+    path: /
     controller: App\Controller\SuiteWebController::index
 manager:
     path: /manager
@@ -15,5 +15,10 @@ activty:
     controller: App\Controller\ActivtyController::index
 
 
+
+
+admin_contact_messages:
+    path: /admin/contact-messages
+    controller: App\Controller\AdminController::contactMessages
 
 

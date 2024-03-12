@@ -1,56 +1,39 @@
 {% extends 'base2.html.twig' %}
 {% block body %}
 
-<!-- ======= Top Bar ======= -->
-<section id="topbar" class="d-flex align-items-center fixed-top topbar-transparent">
-  <div class="container-fluid container-xl d-flex align-items-center justify-content-center justify-content-lg-start">
-    <i class="bi bi-phone d-flex align-items-center"><span>+1 5589 55488 55</span></i>
-    <i class="bi bi-clock ms-4 d-none d-lg-flex align-items-center"><span>Mon-Sat: 11:00 AM - 23:00 PM</span></i>
-  </div>
-</section>
 
-<!-- ======= Header ======= -->
-<header id="header" class="fixed-top d-flex align-items-center header-transparent">
+
+<!-- ======= Header ======= --><header id="header" class="fixed-top d-flex align-items-center header-transparent">
   <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
     <div class="logo me-auto">
-      <h1><a href="index.html">Delicious</a></h1>
+      <h1><a href="index.html">GuideUp</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html"><img src="assetsClient/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
     </div>
 
     <nav id="navbar" class="navbar order-last order-lg-0">
       <ul>
         <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
         <li><a class="nav-link scrollto" href="#about">About</a></li>
-        <li><a class="nav-link scrollto" href="#menu">Menu</a></li>
-        <li><a class="nav-link scrollto" href="#specials">Specials</a></li>
+
+        <li><a class="nav-link scrollto" href="#menu">Offres</a></li>
         <li><a class="nav-link scrollto" href="#events">Events</a></li>
-        <li><a class="nav-link scrollto" href="#chefs">Chefs</a></li>
-        <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
-        <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-          <ul>
-            <li><a href="#">Drop Down 1</a></li>
-            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-              <ul>
-                <li><a href="#">Deep Drop Down 1</a></li>
-                <li><a href="#">Deep Drop Down 2</a></li>
-                <li><a href="#">Deep Drop Down 3</a></li>
-                <li><a href="#">Deep Drop Down 4</a></li>
-                <li><a href="#">Deep Drop Down 5</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Drop Down 2</a></li>
-            <li><a href="#">Drop Down 3</a></li>
-            <li><a href="#">Drop Down 4</a></li>
-          </ul>
-        </li>
-        <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-      </ul>
+        <li><a class="nav-link scrollto" href="#chefs">Mentors</a></li>
+
+        {% if app.user %}
       <i class="bi bi-list mobile-nav-toggle"></i>
+      <li class="dropdown"><a href="#"><span>{{ app.user.firstName }} {{ app.user.lastName }}</span> <i class="bi bi-chevron-down"></i></a>
+        
+        <ul>
+          <li><a href="#">My profile</a></li>
+          <li><a href="{{ path('app_logout') }}">Log out</a></li>
+        </ul>
+      </li>
+      {% endif %}
     </nav><!-- .navbar -->
 
-    <a href="#book-a-table" class="book-a-table-btn scrollto">Book a table</a>
+    
 
   </div>
 </header><!-- End Header -->
@@ -65,56 +48,20 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(assetsClient/img/slide/slide-1.jpg);">
+        <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg);">
           <div class="carousel-container">
             <div class="carousel-content">
-              <h2 class="animate__animated animate__fadeInDown"><span>Delicious</span> Restaurant</h2>
-              <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+              <h2 class="animate__animated animate__fadeInDown"><span>Guide</span> Up</h2>
+              <p class="animate__animated animate__fadeInUp">Your gateway to personalized mentorship. Connect with experienced mentors and unlock your full potential today.</p>
               <div>
-                <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
-                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a>
+                <a href="{{ path('app_login') }}" class="btn-menu animate__animated animate__fadeInUp scrollto">Sign  in</a>
+                <a href="{{ path('app_register') }}" class="btn-book animate__animated animate__fadeInUp scrollto">Sign Up</a>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url(assetsClient/img/slide/slide-2.jpg);">
-          <div class="carousel-container">
-            <div class="carousel-content">
-              <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
-              <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <div>
-                <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
-                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url(assetsClient/img/slide/slide-3.jpg);">
-          <div class="carousel-container">
-            <div class="carousel-content">
-              <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
-              <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <div>
-                <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
-                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
-
-      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-      </a>
-
-      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-      </a>
+        
 
     </div>
   </div>
@@ -125,189 +72,123 @@
   <!-- ======= About Section ======= -->
   <section id="about" class="about">
     <div class="container-fluid">
-
       <div class="row">
-
-        <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("assetsClient/img/about.jpg");'>
-          <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+        <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("assets/img/about.jpg");'>
+          <img src="assetsClient/img/mentoring.jpg" alt="Mentoring Platform" class="img-fluid">
         </div>
-
         <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
-
           <div class="content">
-            <h3>Eum ipsam laborum deleniti <strong>velit pariatur architecto aut nihil</strong></h3>
+            <h3>Welcome to Guide up</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+              Our mentoring platform is designed to connect mentors with mentees in order to facilitate growth, learning, and development. Whether you're seeking guidance in your career, looking to enhance your skills, or simply in need of advice, our platform provides the resources and support you need to succeed.
             </p>
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              Our dedicated team is committed to providing a supportive environment where both mentors and mentees can thrive.
             </p>
             <ul>
-              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+              <li><i class="bx bx-check-double"></i> Connect with experienced mentors who can offer valuable insights and guidance.</li>
+              <li><i class="bx bx-check-double"></i> Access a wide range of resources and tools to support your personal and professional development.</li>
+              <li><i class="bx bx-check-double"></i> Join a community of like-minded individuals who are passionate about learning and growth.</li>
             </ul>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
+              We believe that everyone has the potential to achieve their goals, and our platform is here to help you unlock that potential. Join us today and take the first step towards a brighter future.
             </p>
           </div>
-
         </div>
-
       </div>
-
     </div>
   </section><!-- End About Section -->
+  
 
-  <!-- ======= Whu Us Section ======= -->
-  <section id="why-us" class="why-us">
-    <div class="container">
+  <!-- ======= Why Us Section ======= -->
+<section id="why-us" class="why-us">
+  <div class="container">
+    <div class="section-title">
+      <h2>Why Choose <span>Our Platform</span></h2>
+      <p>Discover the benefits of joining our mentoring platform and why it's the right choice for your growth and development.</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="box">
+          <span>01</span>
+          <h4>Experienced Mentors</h4>
+          <p>Connect with experienced mentors who have a wealth of knowledge and insights to share, helping you navigate your personal and professional challenges.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 mt-4 mt-lg-0">
+        <div class="box">
+          <span>02</span>
+          <h4>Personalized Guidance</h4>
+          <p>Receive personalized guidance tailored to your specific needs and goals, ensuring that you get the support and direction necessary for your success.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 mt-4 mt-lg-0">
+        <div class="box">
+          <span>03</span>
+          <h4>Community Support</h4>
+          <p>Join a vibrant community of like-minded individuals who are passionate about learning and growth, fostering connections and collaborations that enrich your journey.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- End Why Us Section -->
 
-      <div class="section-title">
-        <h2>Why choose <span>Our Restaurant</span></h2>
-        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+
+<!-- ======= Offers Section ======= -->
+<section id="menu" class="menu">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Discover our <span>Offers</span></h2>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 d-flex justify-content-center">
+        <ul id="menu-flters">
+          <li data-filter="*" class="filter-active">Show All</li>
+          <li data-filter=".filter-discounts">Discounts</li>
+          <li data-filter=".filter-bundles">Bundles</li>
+          <li data-filter=".filter-promotions">Promotions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row menu-container">
+
+      <div class="col-lg-6 menu-item filter-discounts">
+        <div class="menu-content">
+          <a href="#">50% Off Membership</a><span>$29.99/mo</span>
+        </div>
+        <div class="menu-ingredients">
+          Get 50% off on your first month's membership fee. Limited time offer. Sign up now!
+        </div>
       </div>
 
-      <div class="row">
-
-        <div class="col-lg-4">
-          <div class="box">
-            <span>01</span>
-            <h4>Lorem Ipsum</h4>
-            <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
-          </div>
+      <div class="col-lg-6 menu-item filter-bundles">
+        <div class="menu-content">
+          <a href="#">Starter Pack</a><span>$49.99</span>
         </div>
-
-        <div class="col-lg-4 mt-4 mt-lg-0">
-          <div class="box">
-            <span>02</span>
-            <h4>Repellat Nihil</h4>
-            <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
-          </div>
+        <div class="menu-ingredients">
+          Get our exclusive Starter Pack including access to 3 mentoring sessions and a personalized development plan.
         </div>
-
-        <div class="col-lg-4 mt-4 mt-lg-0">
-          <div class="box">
-            <span>03</span>
-            <h4> Ad ad velit qui</h4>
-            <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
-          </div>
-        </div>
-
       </div>
+
+      <div class="col-lg-6 menu-item filter-promotions">
+        <div class="menu-content">
+          <a href="#">Refer a Friend</a><span>Earn $10 Credit</span>
+        </div>
+        <div class="menu-ingredients">
+          Refer a friend to our platform and earn a $10 credit towards your next mentoring session.
+        </div>
+      </div>
+
+      <!-- Additional offers can be added here -->
 
     </div>
-  </section><!-- End Whu Us Section -->
 
-  <!-- ======= Menu Section ======= -->
-  <section id="menu" class="menu">
-    <div class="container">
+  </div>
+</section><!-- End Offers Section -->
 
-      <div class="section-title">
-        <h2>Check our tasty <span>Menu</span></h2>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center">
-          <ul id="menu-flters">
-            <li data-filter="*" class="filter-active">Show All</li>
-            <li data-filter=".filter-starters">Starters</li>
-            <li data-filter=".filter-salads">Salads</li>
-            <li data-filter=".filter-specialty">Specialty</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row menu-container">
-
-        <div class="col-lg-6 menu-item filter-starters">
-          <div class="menu-content">
-            <a href="#">Lobster Bisque</a><span>$5.95</span>
-          </div>
-          <div class="menu-ingredients">
-            Lorem, deren, trataro, filede, nerada
-          </div>
-        </div>
-
-        <div class="col-lg-6 menu-item filter-specialty">
-          <div class="menu-content">
-            <a href="#">Bread barrel</a><span>$6.95</span>
-          </div>
-          <div class="menu-ingredients">
-            Lorem, deren, trataro, filede, nerada
-          </div>
-        </div>
-
-        <div class="col-lg-6 menu-item filter-starters">
-          <div class="menu-content">
-            <a href="#">Crab Cake</a><span>$7.95</span>
-          </div>
-          <div class="menu-ingredients">
-            A delicate crab cake served on a toasted roll with lettuce and tartar sauce
-          </div>
-        </div>
-
-        <div class="col-lg-6 menu-item filter-salads">
-          <div class="menu-content">
-            <a href="#">Caesar Selections</a><span>$8.95</span>
-          </div>
-          <div class="menu-ingredients">
-            Lorem, deren, trataro, filede, nerada
-          </div>
-        </div>
-
-        <div class="col-lg-6 menu-item filter-specialty">
-          <div class="menu-content">
-            <a href="#">Tuscan Grilled</a><span>$9.95</span>
-          </div>
-          <div class="menu-ingredients">
-            Grilled chicken with provolone, artichoke hearts, and roasted red pesto
-          </div>
-        </div>
-
-        <div class="col-lg-6 menu-item filter-starters">
-          <div class="menu-content">
-            <a href="#">Mozzarella Stick</a><span>$4.95</span>
-          </div>
-          <div class="menu-ingredients">
-            Lorem, deren, trataro, filede, nerada
-          </div>
-        </div>
-
-        <div class="col-lg-6 menu-item filter-salads">
-          <div class="menu-content">
-            <a href="#">Greek Salad</a><span>$9.95</span>
-          </div>
-          <div class="menu-ingredients">
-            Fresh spinach, crisp romaine, tomatoes, and Greek olives
-          </div>
-        </div>
-
-        <div class="col-lg-6 menu-item filter-salads">
-          <div class="menu-content">
-            <a href="#">Spinach Salad</a><span>$9.95</span>
-          </div>
-          <div class="menu-ingredients">
-            Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
-          </div>
-        </div>
-
-        <div class="col-lg-6 menu-item filter-specialty">
-          <div class="menu-content">
-            <a href="#">Lobster Roll</a><span>$12.95</span>
-          </div>
-          <div class="menu-ingredients">
-            Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section><!-- End Menu Section -->
   <!-- ======= Specials Section ======= -->
   <section id="specials" class="specials">
       <div class="container">
@@ -354,390 +235,118 @@
 
 
   <!-- ======= Events Section ======= -->
-  <section id="events" class="events">
-    <div class="container">
+<section id="events" class="events">
+  <div class="container">
 
-      <div class="section-title">
-        
-        <h2>Organisez votre    <span>   événement   </span>   sur notre plateforme</h2>
-      </div>
-
-      <div class="events-slider swiper">
-        <div class="swiper-wrapper">
-
-          {% for event in events %}
-          <div class="swiper-slide">
-              <div class="row event-item">
-                  <div class="col-lg-6">
-                
-                <img src="{{ asset('uploads/images/' ~ event.imageFileName) }}" class="img-fluid" alt="{{ event.name }}">
-
-
-              </div>
-              <div class="col-lg-6 pt-4 pt-lg-0 content">
-                <h3>{{ event.name }}</h3>
-                <div class="price">
-                  
-                  <p><span> {{ event.prix }}</span></p>
-                </div>
-                <br><br>
-                <p class="fst-italic">
-                  {{event.subject}}
-                </p>
-                <br><br>
-                <div class="section-title">
-                  <h2> de  <span>{{ event.fromDate|date('Y-m-d H:i:s') }}</span> a <span>{{ event.toDate|date('Y-m-d H:i:s') }}</span> </h2>
-                </div>
-               
-                
-
-              </div>
-            </div>
-            {% endfor %}
-          </div><!-- End testimonial item -->
-
-        
-        
-
-        </div>
-        <div class="swiper-pagination"></div>
-      </div>
-
+    <div class="section-title">
+      <h2>Our <span>Events</span></h2>
     </div>
-  </section><!-- End Events Section -->
 
-  <!-- ======= Book A Table Section ======= -->
-  <section id="book-a-table" class="book-a-table">
-    <div class="container">
+    <div class="events-slider swiper">
+      <div class="swiper-wrapper">
 
-      <div class="section-title">
-        <h2>Book a <span>Table</span></h2>
-        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+        <!-- Loop through events and create slides -->
+        {% for event in events %}
+        <div class="swiper-slide">
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="{{ asset('uploads/images/' ~ event.imageFileName) }}" class="img-fluid" alt="{{ event.name }}">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>{{ event.name }}</h3>
+              <div class="price">
+                <p><span>{{ event.prix }}</span></p>
+              </div>
+              <p class="fst-italic">{{ event.subject }}</p>
+              <div class="section-title">
+                <h2>From <span>{{ event.fromDate|date('Y-m-d H:i:s') }}</span> to <span>{{ event.toDate|date('Y-m-d H:i:s') }}</span></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
       </div>
+      <!-- Add pagination -->
+      <div class="swiper-pagination"></div>
 
-      <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form">
-        <div class="row">
-          <div class="col-lg-4 col-md-6 form-group">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-            <div class="validate"></div>
-          </div>
-          <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
-            <div class="validate"></div>
-          </div>
-          <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-            <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-            <div class="validate"></div>
-          </div>
-          <div class="col-lg-4 col-md-6 form-group mt-3">
-            <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-            <div class="validate"></div>
-          </div>
-          <div class="col-lg-4 col-md-6 form-group mt-3">
-            <input type="text" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-            <div class="validate"></div>
-          </div>
-          <div class="col-lg-4 col-md-6 form-group mt-3">
-            <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
-            <div class="validate"></div>
-          </div>
-        </div>
-        <div class="form-group mt-3">
-          <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
-          <div class="validate"></div>
-        </div>
-        <div class="mb-3">
-          <div class="loading">Loading</div>
-          <div class="error-message"></div>
-          <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
-        </div>
-        <div class="text-center"><button type="submit">Send Message</button></div>
-      </form>
-
+    
     </div>
-  </section><!-- End Book A Table Section -->
 
-  <!-- ======= Gallery Section ======= -->
-  <section id="gallery" class="gallery">
-    <div class="container-fluid">
+  </div>
+</section>
+<!-- End Events Section -->
 
-      <div class="section-title">
-        <h2>Some photos from <span>Our Restaurant</span></h2>
-        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
-      </div>
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper('.events-slider', {
+    slidesPerView: 'auto',
+    spaceBetween: 30,
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
 
-      <div class="row g-0">
 
-        <div class="col-lg-3 col-md-4">
-          <div class="gallery-item">
-            <a href="assetsClient/img/gallery/gallery-1.jpg" class="gallery-lightbox">
-              <img src="assetsClient/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
-            </a>
-          </div>
-        </div>
+ 
+ 
+<!-- ======= Mentors Section ======= -->
+<section id="mentors" class="mentors">
+  <div class="container">
 
-        <div class="col-lg-3 col-md-4">
-          <div class="gallery-item">
-            <a href="assetsClient/img/gallery/gallery-2.jpg" class="gallery-lightbox">
-              <img src="assetsClient/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4">
-          <div class="gallery-item">
-            <a href="assetsClient/img/gallery/gallery-3.jpg" class="gallery-lightbox">
-              <img src="assetsClient/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4">
-          <div class="gallery-item">
-            <a href="assetsClient/img/gallery/gallery-4.jpg" class="gallery-lightbox">
-              <img src="assetsClient/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4">
-          <div class="gallery-item">
-            <a href="assetsClient/img/gallery/gallery-5.jpg" class="gallery-lightbox">
-              <img src="assetsClient/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4">
-          <div class="gallery-item">
-            <a href="assetsClient/img/gallery/gallery-6.jpg" class="gallery-lightbox">
-              <img src="assetsClient/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4">
-          <div class="gallery-item">
-            <a href="assetsClient/img/gallery/gallery-7.jpg" class="gallery-lightbox">
-              <img src="assetsClient/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4">
-          <div class="gallery-item">
-            <a href="assetsClient/img/gallery/gallery-8.jpg" class="gallery-lightbox">
-              <img src="assetsClient/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
-            </a>
-          </div>
-        </div>
-
-      </div>
-
+    <div class="section-title">
+      <h2>Our Professional <span>Mentors</span></h2>
+      <p>Meet the experienced mentors ready to guide you on your journey to success.</p>
     </div>
-  </section><!-- End Gallery Section -->
 
-  <!-- ======= Chefs Section ======= -->
-  <section id="chefs" class="chefs">
-    <div class="container">
+    <div class="row">
 
-      <div class="section-title">
-        <h2>Our Proffesional <span>Chefs</span></h2>
-        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+      <!-- Mentor 1 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="member">
+        {% for user in users %}
+        {% for role in user.roles %}
+        {% if role in ['MENTOR'] %}
+        <div class="pic"><img src="assets/img/mentors/mentor-1.jpg" class="img-fluid" alt=""></div>
+         <div class="member-info">
+           <h4>{{ user.firstName }} {{ user.lastName }}</h4>
+           
+            <span> Mentor</span>
+            
+            <div class="social">
+              <a href=""><i class="bi bi-twitter"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+             
+            </div>
+           
+          </div>
+        </div>
       </div>
-
-      <div class="row">
-
-        <div class="col-lg-4 col-md-6">
-          <div class="member">
-            <div class="pic"><img src="assetsClient/img/chefs/chefs-1.jpg" class="img-fluid" alt=""></div>
-            <div class="member-info">
-              <h4>Walter White</h4>
-              <span>Master Chef</span>
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-          <div class="member">
-            <div class="pic"><img src="assetsClient/img/chefs/chefs-2.jpg" class="img-fluid" alt=""></div>
-            <div class="member-info">
-              <h4>Sarah Jhonson</h4>
-              <span>Patissier</span>
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-          <div class="member">
-            <div class="pic"><img src="assetsClient/img/chefs/chefs-3.jpg" class="img-fluid" alt=""></div>
-            <div class="member-info">
-              <h4>William Anderson</h4>
-              <span>Cook</span>
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+    
     </div>
-  </section><!-- End Chefs Section -->
+   
+  </div>
+ 
+</section><!-- End Mentors Section -->
 
-  <!-- ======= Testimonials Section ======= -->
-  <section id="testimonials" class="testimonials">
-    <div class="container position-relative">
 
-      <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-        <div class="swiper-wrapper">
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <img src="assetsClient/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-              <h3>Saul Goodman</h3>
-              <h4>Ceo &amp; Founder</h4>
-              <div class="stars">
-                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              </div>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <img src="assetsClient/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-              <h3>Sara Wilsson</h3>
-              <h4>Designer</h4>
-              <div class="stars">
-                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              </div>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <img src="assetsClient/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-              <h3>Jena Karlis</h3>
-              <h4>Store Owner</h4>
-              <div class="stars">
-                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              </div>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <img src="assetsClient/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-              <h3>Matt Brandon</h3>
-              <h4>Freelancer</h4>
-              <div class="stars">
-                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              </div>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <img src="assetsClient/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-              <h3>John Larson</h3>
-              <h4>Entrepreneur</h4>
-              <div class="stars">
-                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              </div>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><!-- End testimonial item -->
-
-        </div>
-        <div class="swiper-pagination"></div>
-      </div>
-
-    </div>
-  </section><!-- End Testimonials Section -->
+ 
 
   <!-- ======= Contact Section ======= -->
   <section id="contact" class="contact">
-    <div class="container">
-
-      <div class="section-title">
-        <h2><span>Contact</span> Us</h2>
-        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
-      </div>
-    </div>
-
-    <div class="map">
-      <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
-    </div>
-
-    <div class="container mt-5">
-
-      <div class="info-wrap">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 info">
-            <i class="bi bi-geo-alt"></i>
-            <h4>Location:</h4>
-            <p>A108 Adam Street<br>New York, NY 535022</p>
-          </div>
-
-          <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
-            <i class="bi bi-clock"></i>
-            <h4>Open Hours:</h4>
-            <p>Monday-Saturday:<br>11:00 AM - 2300 PM</p>
-          </div>
-
-          <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
-            <i class="bi bi-envelope"></i>
-            <h4>Email:</h4>
-            <p>info@example.com<br>contact@example.com</p>
-          </div>
-
-          <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
-            <i class="bi bi-phone"></i>
-            <h4>Call:</h4>
-            <p>+1 5589 55488 51<br>+1 5589 22475 14</p>
-          </div>
-        </div>
-      </div>
+    
 
       {{ form_start(form, {'attr': {'class': 'php-email-form'}}) }}
 
@@ -780,9 +389,8 @@
 <!-- ======= Footer ======= -->
 <footer id="footer">
   <div class="container">
-    <h3>Delicious</h3>
-    <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
-    <div class="social-links">
+    <h3>GuideUp</h3>
+    
       <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
       <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
       <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
@@ -790,14 +398,10 @@
       <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
     </div>
     <div class="copyright">
-      &copy; Copyright <strong><span>Delicious</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>GuideUp</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/delicious-free-restaurant-bootstrap-theme/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+   
     </div>
   </div>
 </footer><!-- End Footer -->

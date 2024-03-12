@@ -3,17 +3,19 @@
 {% block title %}Activty index{% endblock %}
 
 {% block body %}
-    <h1>Activty index</h1>
+<div class="bg-light text-center rounded p-4">
+   
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Subject</th>
-                <th>Text</th>
-                <th>ImageFileName</th>
-                <th>actions</th>
+    <table class="table table-striped">
+       <table class="table text-start align-middle table-bordered table-hover mb-0">
+        <thead class="thead-dark">
+                    <tr class="text-dark">
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Text</th>
+                <th scope="col"> ImageFileName</th>
+                <th scope="col">actions</th>
             </tr>
         </thead>
         <tbody>
@@ -37,5 +39,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_activty_new') }}">Create new</a>
+    <a class="btn btn-sm btn-primary" href="{{ path('app_activty_new') }}">Create new</a>
+</div>
 {% endblock %}
