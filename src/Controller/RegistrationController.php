@@ -25,35 +25,52 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
-            $userPasswordHasher->hashPassword(
+                $userPasswordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
                 )
             );
-
+    
+            /** @var UploadedFile $imageFile */
+            $imageFile = $form->get('imageFileName')->getData();
+    
+            if ($imageFile) {
+                // Generate a unique name for the file
+                $newFilename = uniqid().'.'.$imageFile->guessExtension();
+    
+                // Move the file to the directory where images are stored
+                $imageFile->move(
+                    $this->getParameter('kernel.project_dir') . '/public/uploads/images',
+                    $newFilename
+                );
+    
+                // Set the photo file name to the user entity
+                $user->setImageFileName($newFilename);
+            }
+    
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
-
+    
             // On génère le JWT de l'utilisateur
             // On crée le Header
             $header = [
                 'typ' => 'JWT',
                 'alg' => 'HS256'
             ];
-
+    
             // On crée le Payload
             $payload = [
                 'user_id' => $user->getId()
             ];
-
+    
             // On génère le token
             $token = $jwt->generate($header, $payload, $this->getParameter('app.jwtsecret'));
-
+    
             // On envoie un mail
             $mail->send(
                 'no-reply@monsite.net',
@@ -62,18 +79,19 @@ class RegistrationController extends AbstractController
                 'register',
                 compact('user', 'token')
             );
-
+    
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
                 $request
             );
         }
-
+    
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
+    
 
     #[Route('/verif/{token}', name: 'verify_user')]
     public function verifyUser($token, JWTService $jwt, UsersRepository $usersRepository, EntityManagerInterface $em): Response

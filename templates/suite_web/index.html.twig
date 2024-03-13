@@ -9,7 +9,7 @@
     <div class="logo me-auto">
       <h1><a href="index.html">GuideUp</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- <a href="index.html"><img src="assetsClient/img/logo.png" alt="" class="img-fluid"></a>-->
     </div>
 
     <nav id="navbar" class="navbar order-last order-lg-0">
@@ -48,7 +48,7 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg);">
+        <div class="carousel-item active" style="background-image: url(assetsClient/img/slide/mhh.jpg);">
           <div class="carousel-container">
             <div class="carousel-content">
               <h2 class="animate__animated animate__fadeInDown"><span>Guide</span> Up</h2>
@@ -73,8 +73,8 @@
   <section id="about" class="about">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("assets/img/about.jpg");'>
-          <img src="assetsClient/img/mentoring.jpg" alt="Mentoring Platform" class="img-fluid">
+        <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("assetsClient/img/logoUP.png");'>
+          
         </div>
         <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
           <div class="content">
@@ -298,47 +298,49 @@
  
  
 <!-- ======= Mentors Section ======= -->
-<section id="mentors" class="mentors">
+<section id="chefs" class="chefs">
   <div class="container">
 
     <div class="section-title">
       <h2>Our Professional <span>Mentors</span></h2>
       <p>Meet the experienced mentors ready to guide you on your journey to success.</p>
     </div>
-
+   
     <div class="row">
-
+      {% for user in users %}
+      {% for role in user.roles %}
+      {% if role in ['MENTOR'] %}
       <!-- Mentor 1 -->
-      <div class="col-lg-4 col-md-6">
-        <div class="member">
-        {% for user in users %}
-        {% for role in user.roles %}
-        {% if role in ['MENTOR'] %}
-        <div class="pic"><img src="assets/img/mentors/mentor-1.jpg" class="img-fluid" alt=""></div>
-         <div class="member-info">
-           <h4>{{ user.firstName }} {{ user.lastName }}</h4>
-           
-            <span> Mentor</span>
-            
-            <div class="social">
-              <a href=""><i class="bi bi-twitter"></i></a>
-              <a href=""><i class="bi bi-facebook"></i></a>
-              <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""><i class="bi bi-linkedin"></i></a>
-             
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="member text-center">
+          <div class="pic">
+            <img src="{{ asset('uploads/images/' ~ user.imageFileName) }}" class="img-fluid" alt="{{ user.lastName }}">
+          </div>
+          <div class="member-info mt-3">
+            <h4>{{ user.firstName }} {{ user.lastName }}</h4>
+            <span>Mentor</span>
+            <div class="social mt-3">
+              <a href="#" class="bi bi-twitter"></a>
+              <a href="#" class="bi bi-facebook"></a>
+              <a href="#" class="bi bi-instagram"></a>
+              <a href="#" class="bi bi-linkedin"></a>
             </div>
-           
           </div>
         </div>
       </div>
-      {% endif %}
-      {% endfor %}
-      {% endfor %}
+  {% endif %}
+  {% endfor %}
+  {% endfor %}
+         
+        </div>
+      </div>
+      
     
-    </div>
+    
    
-  </div>
  
+</div>
+</div>
 </section><!-- End Mentors Section -->
 
 

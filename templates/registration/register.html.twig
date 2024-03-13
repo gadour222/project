@@ -1,7 +1,4 @@
-
-
 {% extends 'base.html.twig' %}
-
 
 {% block header %}
 
@@ -14,6 +11,7 @@
 {% block footer %}
 
 {% endblock %}
+
 {% block body %}
 <div class="container">
 
@@ -22,45 +20,50 @@
             <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-                    
-
                     <div class="card mb-3">
-
                         <div class="card-body">
-
                             <div class="pt-4 pb-2">
                                 <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
-                                <p class="text-center small">Enter your personal details to create account</p>
+                                <p class="text-center small">Enter your personal details to create an account</p>
                             </div>
 
+                            {{ form_start(registrationForm, {'attr': {'enctype': 'multipart/form-data'}}) }}
+                            <div class="col-12">
+                                <fieldset class="mb-3">
+                                    <legend>Mon identité</legend>
+                                    {{ form_row(registrationForm.lastname) }}
+                                    {{ form_row(registrationForm.firstname) }}
+                                    {{ form_row(registrationForm.email) }}
+                                </fieldset>
 
-                {{ form_start(registrationForm) }}
-                <div class="col-12">
-                <fieldset class="mb-3">
-                        <legend>Mon identité</legend>
-                        
+                                <fieldset class="mb-3">
+                                    <legend>Mes coordonnées</legend>
+                                    {{ form_row(registrationForm.address) }}
+                                    {{ form_row(registrationForm.zipcode) }}
+                                    {{ form_row(registrationForm.city) }}
+                                    {{ form_row(registrationForm.imageFileName) }}
+                                </fieldset>
+
+                                {{ form_row(registrationForm.roles) }} {# Render the role field as radio buttons #}
+                             
+                               {{ form_row(registrationForm.plainPassword, {
+                                    label: 'Password'
+                                }) }}
+
                            
-                        {{ form_row(registrationForm.lastname) }}
-                        {{ form_row(registrationForm.firstname) }}
-                        {{ form_row(registrationForm.email) }}
-                    </fieldset>
 
-                    <fieldset class="mb-3">
-                        <legend>Mes coordonnées</legend>
-                        {{ form_row(registrationForm.address) }}
-                        {{ form_row(registrationForm.zipcode) }}
-                        {{ form_row(registrationForm.city) }}
-                    </fieldset>
-                    {{ form_row(registrationForm.plainPassword, {
-                        label: 'Password'
-                    }) }}
-                    {{ form_row(registrationForm.RGPDConsent) }}
+                           
 
-                    <button type="submit" class="btn btn-primary btn-lg my-3">M'inscrire</button>
-                    <a href="{{ path('app_login') }}" class="btn btn-secondary">Me connecter</a>
-                {{ form_end(registrationForm) }}            
+                                <button type="submit" class="btn btn-primary btn-lg my-3">M'inscrire</button>
+                                <a href="{{ path('app_login') }}" class="btn btn-secondary">Me connecter</a>
+                            </div>
+                            {{ form_end(registrationForm) }}
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
+</div>
 {% endblock %}

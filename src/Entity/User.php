@@ -32,6 +32,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private $email;
 
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageFileName = null;
+
     #[ORM\Column(type: 'json')]
     private $roles = [];
 
@@ -219,5 +223,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-  
+    public function getImageFileName(): ?string
+{
+    return $this->imageFileName;
+}
+
+public function setImageFileName(?string $imageFileName): static
+{
+    $this->imageFileName = $imageFileName;
+
+    return $this;
+}
 }

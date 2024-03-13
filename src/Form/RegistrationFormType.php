@@ -15,11 +15,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Image; 
+
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -61,6 +64,14 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Ville'
             ])
+            ->add('imageFileName', FileType::class,[
+                'required' =>false,
+                'mapped' =>false,
+               'constraints' =>[
+                new Image(['maxSize' =>'5000k'])
+               ]
+
+            ])
             ->add('RGPDConsent', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -69,6 +80,16 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
                 'label' => 'En m\'inscrivant à ce site j\'accepte...'
+            ])
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'Mentor' => 'MENTOR',
+                    
+                    'Mentee' => 'MENTEE',
+                ],
+                'expanded' => true,
+                'multiple' => true,
+                'label' => 'Roles',
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
