@@ -14,7 +14,10 @@ activty:
     path: /activty
     controller: App\Controller\ActivtyController::index
 
-
+app_graphe:
+    path: /graphe/event/{id}
+    controller: App\Controller\GrapheController::index
+    methods: ['GET']
 
 
 admin_contact_messages:

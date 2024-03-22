@@ -7,6 +7,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
@@ -33,7 +34,8 @@
         {% endblock %}
 
         {% block javascripts %}
-      
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Inclure le script Chart.js -->
+
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src={{asset("lib/chart/chart.min.js")}} ></script>

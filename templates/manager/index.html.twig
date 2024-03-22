@@ -8,42 +8,195 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container mt-5"> {# Ajouter la classe 'mt-5' pour ajouter un espace en haut de la page #}
-        <h1 class="text-center mb-4">Statistiques</h1>
-        <div class="d-flex justify-content-center"> {# Utilisez les classes Bootstrap pour centrer le contenu #}
-            <canvas id="manager" width="200" height="200"></canvas> {# Augmentez la taille du canevas selon vos besoins #}
-                 
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-chart-line fa-3x text-primary"></i>
+                    <div class="ms-3">
+                        <p class="mb-2">View for the web suite</p>
+                        <h6 class="mb-0">{{ visitCount }}</h6>
+                    </div>
+                </div>
+
+                
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-chart-line fa-3x text-primary"></i>
+                    <div class="ms-3">
+                        <p class="mb-2">total Users</p>
+                        <h6 class="mb-0">{{ totalUsers }}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="row mt-4">
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Bar graph for registration evolution</h6>
+                    <canvas id="users" width="741" height="370" style="display: block; box-sizing: border-box; height: 296px; width: 592.8px;"></canvas>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Line graph for event count</h6>
+                    <canvas id="events" width="741" height="370" style="display: block; box-sizing: border-box; height: 296px; width: 592.8px;"></canvas>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Line graph for event count</h6>
+                    <canvas id="eventss" width="741" height="370" style="display: block; box-sizing: border-box; height: 296px; width: 592.8px;"></canvas>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-  </div>
+   
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let manager = document.querySelector("#manager");
-            let managerGraph = new Chart(manager, {
-                type: "pie",
+        document.addEventListener('DOMContentLoaded', function() {
+            var ctxUsers = document.getElementById('users').getContext('2d');
+            var usersChart = new Chart(ctxUsers, {
+                type: 'bar',
                 data: {
-                    labels: {{eventNom|raw }},
+                    labels: {{ dates|raw }},
                     datasets: [{
-                        label: "Repartition des event",
-                        data: {{eventCount|raw}},
-                        backgroundColor: {{eventColor|raw}}
-                            
+                        label: 'Number of users for each role',
                         
+                        data: {{ usersCount|raw }},
+                        borderColor: '#000000',
+                        backgroundColor: [
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                       
+                      ],
+                      borderColor: [
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                        'rgb(255, 99, 132)'
+                        
+                      ],
+                      borderWidth: 1
+                    }]
+                  },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 1 
+                            }
+                        }]
+                    }
+                }
+            });
+
+            var ctxEvents = document.getElementById('events').getContext('2d');
+            var eventsChart = new Chart(ctxEvents, {
+                type: 'pie',
+                data: {
+                    labels: ["Education and formation ", "Other event", "Arts", "Social"],
+                    datasets: [{
+                        label: 'Number of events for each role',
+                        data: {{ eventCount|raw }},
+                        borderColor: '#000000',
+                        backgroundColor: ["#0000FF", "#800080", "green", "#FF0000"],
+                        borderWidth: 1.4,
+                        fill: false
                     }]
                 },
                 options: {
-                    responsive: false,
-                    maintainAspectRatio: false,
-                    scales: {}
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 1 
+                            }
+                        }]
+                    }
                 }
             });
+
+
+
+            var ctxEventss = document.getElementById('eventss').getContext('2d');
+
+            // Original labels
+            var originalLabels = {{ datesMois|raw }};
+            
+            // Mapping of original labels to desired labels
+            var labelMapping = {
+                '2024-01': 'jav',
+                '2024-02': 'fiv',
+                '2024-03': 'mar',
+                '2024-04': 'avr',
+                '2024-05': 'mai',
+                '2024-06': 'jun',
+                '2024-07': 'jul',
+                '2024-08': 'aug',
+                '2024-09': 'sep',
+                '2024-10': 'oct',
+                '2024-11': 'nov',
+                '2024-12': 'dec'
+                
+            };
+            
+            // Convert original labels to desired labels
+            var mappedLabels = originalLabels.map(function(originalLabel) {
+                return labelMapping[originalLabel];
+            });
+            
+            var eventsChart = new Chart(ctxEventss, {
+                type: 'line',
+                data: {
+                    labels: mappedLabels,
+            
+                    datasets: [{
+                            label: 'Events',
+                            data: {{ moisEventCount|raw }},
+                            borderColor: '#000000',
+                            borderWidth: 1.4,
+                            fill: false
+                        },
+                        {
+                            label: 'Users',
+                            data: {{ userLineCount|raw }},
+                            borderColor: '#FF5733',
+                            borderWidth: 1.4,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 1
+                            }
+                        }]
+                    }
+                }
+            });
+            
+            
+
+
         });
+
+        
+
+
+
+        
     </script>
 {% endblock %}

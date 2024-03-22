@@ -18,6 +18,14 @@ class SuiteWebController extends AbstractController
     #[Route('/suiteWeb', name: 'app_suite_web')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // Récupérer le compteur de visites de la session
+        $session = $request->getSession();
+        $visitCount = $session->get('suite_web_visits', 0);
+        // Incrémenter le compteur de visites
+        $visitCount++;
+        // Mettre à jour le compteur de visites dans la session
+        $session->set('suite_web_visits', $visitCount);
+
         $form = $this->createForm(ContactFormType::class);
         $form->handleRequest($request);
 
@@ -46,7 +54,7 @@ class SuiteWebController extends AbstractController
             'events' => $events,
             'activties' => $activties,
             'users' => $users,
-             
+            'visitCount' => $visitCount, // Envoyer le compteur de visites à la vue
         ]);
     }
 }

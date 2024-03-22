@@ -20,29 +20,27 @@ class EventRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Event::class);
     }
+/** 
+ * Return number of "user" per day 
+ * @return void
+*/
 
-//    /**
-//     * @return Event[] Returns an array of Event objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+public function countByColor() {
+    $query = $this->createQueryBuilder('a')
+        ->select('COUNT(a) as count', 'SUBSTRING(a.color, 1, 10) AS colorEvent')
+        ->groupBy('colorEvent');
+        
+    return $query->getQuery()->getResult();
+}
 
-//    public function findOneBySomeField($value): ?Event
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+
+
+public function countMoisByDate() {
+    $query = $this->createQueryBuilder('s')
+        ->select('COUNT(s.id) AS count', "SUBSTRING(s.from_date, 1, 7) AS moisEvent")
+        ->groupBy('moisEvent');
+
+    return $query->getQuery()->getResult();
+}
+
 }

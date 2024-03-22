@@ -22,6 +22,47 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
+/** 
+ * Return number of "user" per day 
+ * @return void
+*/
+
+public function countByDate() {
+    $query = $this->createQueryBuilder('a')
+        ->select('COUNT(a) as count', 'SUBSTRING(a.roles, 1, 10) AS dateUser')
+        ->groupBy('dateUser');
+        
+    return $query->getQuery()->getResult();
+}
+
+public function countByDateLine() {
+    $query = $this->createQueryBuilder('u')
+        ->select('COUNT(u) as count', 'SUBSTRING(u.created_at, 1, 7) AS userLine')
+        ->groupBy('userLine');
+        
+    return $query->getQuery()->getResult();
+}
+
+//SELECT COUNT(*), SUBSTRING(created_at, 1, 7) AS userLine FROM user GROUP BY userLine;
+
+
+
+public function countByDateMonth() {
+    $query = $this->createQueryBuilder('u')
+        ->select('COUNT(u.id) AS count', "SUBSTRING(u.created_at, 1, 7) AS mois")
+        ->groupBy('mois');
+
+    return $query->getQuery()->getResult();
+}
+
+
+
+ // SELECT COUNT(*), SUBSTRING(created_at, 1, 7) AS userLine FROM user GROUP BY userLine; -->
+
+
+
+
+
 
 //    /**
 //     * @return User[] Returns an array of User objects
